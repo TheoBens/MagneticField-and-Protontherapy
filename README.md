@@ -1,4 +1,4 @@
-# MagneticField-and-Protontherapy
+# **MagneticField-and-Protontherapy**
 Modélisation de l'influcence d'un champ magnétique sur la trajectoire d'une particule, et analyse de l'application à la protonthérapie.
 
 # **Projet Modélisation Numérique pour la physique**
@@ -6,6 +6,7 @@ Modélisation de l'influcence d'un champ magnétique sur la trajectoire d'une pa
 ## Ben Sadoun Théo et Haddad Sami
 
 ---
+
 ## **Introduction**
 
 La dynamique d’une particule chargée dans un champ magnétique est un phénomène fondamental en physique, qu’on retrouve dans de nombreux contextes tels que la spectrométrie de masse ou la protonthérapie.
@@ -19,6 +20,7 @@ Puis nous modéliserons la trajectoire de celle-ci au sein d'un champ uniforme, 
 Enfin, nous observerons les conséquences de la manipultion de champs magnétiques appliquée à la protonthérapie.
 
 ---
+
 ## **Problématique**
 
 1. ***Comment un champ magnétique affecte-t-il la trajectoire d’une particule chargée en mouvement ?***
@@ -28,6 +30,7 @@ Enfin, nous observerons les conséquences de la manipultion de champs magnétiqu
 3. ***Comment l'influence d'un champ magnétique peut-il aider dans la protonthérapie ?***
 
 ---
+
 ### **I. Création de l'objet Particule**
 
 Nous allons donc dans un premier temps implémenter l'objet particule, auquel on associe une position, une vitesse, une masse et une charge. On lui attribuera également une fonction permettant de calculer la force de Lorentz appliquée à cette particule à travers un champ magnétique, donnée par :
@@ -63,51 +66,42 @@ class Particule:
 ```
 
 ---
+
 ### **II. Déterminer la position d'une particule à un instant t à l'aide de la Force de Lorentz**
 
 Dans cette partie nous allons voir comment déterminer, à l'aide des lois de Lorentz et Newton, les équations du mouvement d'une particule de charge $q$ soumise à un champ magnétique $\overrightarrow{B}$. <br>
 <br>
 Nous avons vu précédemment que la force appliquée à une particule au sein d'un champ magnétiuque, et en l'abscence de champ électrique, nous est donnée par la force de Lorentz (1) :
-$$
-\overrightarrow{F} = q \ \vec{v} \ ∧ \ \overrightarrow{B}
-$$
+$$\overrightarrow{F} = q \ \vec{v} \ ∧ \ \overrightarrow{B}$$
 
 Or on sait d'après la seconde loi de Newton que :
-$$
-\sum {\overrightarrow{F}} = m \times \vec{a}
-\tag{2}
-$$
+$$\sum {\overrightarrow{F}} = m \times \vec{a}
+\tag{2}$$
 
 On considère que la seule force appliquée à notre particule est celle de Lorentz. En appliquant la seconde loi de Newton (2) à l'équation de Lorentz (1), on obtient :
-$$
-\begin{aligned}
+$$\begin{aligned}
 m \times \vec{a} &= q \ \vec{v} \ ∧ \ \overrightarrow{B} \\
 m \times \frac{\mathrm{d} \vec{v}} {\mathrm{d}t} &= q \ \vec{v} \ ∧ \ \overrightarrow{B} \\
-\end{aligned}
-$$
+\end{aligned}$$
 
 Cela donne un système d'équations différentielles pour les composantes de $\vec{v}$. <br>
 Prenons par exemple le cas d'un champ magnétique uniforme : $\overrightarrow{B} = B \vec{e}_z$ <br>
 On peut alors écrire les équations du mouvement associées. <br>
 En coordonnées cartésiennes :
-$$
-\begin{cases} 
+$$\begin{cases} 
 \dfrac{\mathrm{d}v_x}{\mathrm{d}t} = \dfrac{qB}{m} v_y \\
 \dfrac{\mathrm{d}v_y}{\mathrm{d}t} = -\dfrac{qB}{m} v_x \\
 \dfrac{\mathrm{d}v_z}{\mathrm{d}t} = 0
-\end{cases}
-$$
+\end{cases}$$
 
 On peut poser : $\omega_c = \dfrac{qB}{m} = \text{fréquence cyclotron}$ (désignant la pulsation qu'acquiert une charge plongée dans un champ magnétique).
 
 Résolvons les équations en intégrant. Les solutions sont alors :
-$$
-\begin{cases}
+$$\begin{cases}
 v_x(t) = v_0 \cos(\omega_c t) \\
 v_y(t) = v_0 \sin(\omega_c t) \\
 v_z(t) = v_{z0}
-\end{cases}
-$$
+\end{cases}$$
 
 Puis, on intègre une seconde fois pour obtenir la trajectoire :
 
@@ -118,9 +112,13 @@ y(t) = y_0 - \dfrac{v_0}{\omega_c} \cos(\omega_c t) + \dfrac{v_0}{\omega_c} \\
 z(t) = z_0 + v_{z0} t
 \end{cases}
 $$
+
 <br>
+
 Cette méthode d'intégration permettant de déterminer la trajectoire de l'une particule peut être calculée de manière numérique, ce que nous verrons dans la partie III.
+
 ---
+
 ### **III. Comparaison de méthodes d'intégrations numériques et étude de la trajectoire d'un électron dans différents types de champs**
 
 L'objectif ici est de comparer différentes méthodes de résolution numériques afin de déterminer la trajectoire d'un électron, au sein de différents types de champs magnétiques.
@@ -131,6 +129,7 @@ L'objectif ici est de comparer différentes méthodes de résolution numériques
 
 Nous allons maintenant tracé la trajectoire d'un électron au sein d'un champ uniforme. <br>
 Pour cela, on commence par définir un champ uniforme en z, ainsi que les attributs de l'électron (position initale, vitesse, masse et charge) :
+```python
 # Définir un champ magnétique uniforme B = (0, 0, 1) T
 def champ_uniforme(position=None):
     return [0, 0, 1]        # T (Tesla)
@@ -142,22 +141,24 @@ electron = Particule(
     masse = 9.11e-31,       # kg
     charge = -1.6e-19       # C
 )
+```
+
 ##### **III.1.1 Simulation via la méthode d'Euler explicite**
 
 On travaille dans un premier temps avec la méthode d'Euler pour l'évolution de la position de la particule dans le temps. Elle est connue pour sa simplicité, et consiste à approximer la solution d'une équation différentielle en utilisant la pente locale à chaque pas de temps. <br>
 Pour une particule chargée :
-$$
-\begin{align*}
+$$\begin{align*}
 \frac{d\vec{v}}{dt} &= \frac{q}{m}\left(\vec{E} + \vec{v} ∧ \vec{B}\right) \\
 \vec{v}_{n+1} &= \vec{v}_n + \Delta t \cdot \frac{q}{m}\left(\vec{E}_n + \vec{v}_n ∧ \vec{B}_n\right) \\
 \vec{x}_{n+1} &= \vec{x}_n + \Delta t \cdot \vec{v}_n
-\end{align*}
-$$
+\end{align*}$$
 
 <br>
 On définit alors les paramètres de la simulation, puis la fonction de simulation que l'on execute pour un temps défini, afin de déterminer la position de la particule à chaque instant à l'aide de la force de Lorentz qui lui est appliquée dans ce champ uniforme. Ce qui nous permettra de tracer par la suite, la trajectoire de la particule dans l'espace. <br>
 <br>
 Ici, le choix des paramètres de temps de la simulation est essentiel. En effet, il est important de constater que la force de Lorentz magnétique ne travaille pas, et ne modifie donc pas l’énergie cinétique des particules. Elle dévie une charge sans changé son énergie. On peut donc comparer la simulation pour différentes valeurs de dt, afin d'observer laquelle est pertinente, c'est à dire laquelle correspond à une invariance de l'énergie de la particule.
+
+```python
 import matplotlib.pyplot as plt
 
 # Simulation pour un dt donné
@@ -213,11 +214,14 @@ for i, dt in enumerate(dts):
 
 plt.tight_layout()
 plt.show()
+```
 
 On observe alors que dans les cas où $\mathrm{d}t = 10^{-12}$ s et $\mathrm{d}t = 10^{-13}$ s, l'évolution de l'énergie cinétique n'est pas linéaire, contrairement au cas où $\mathrm{d}t = 10^{-14}$ s où la courbe représentant l'évolution de l'énergie cinétique au cours du temps est une droite passant par l'origine. Dans ce cas, la trajectoire est correcte.<br>
 Or, dans tous les cas, on observe une augmentation de l'énergie cinétique, le principe de conservation énergétique n'est donc pas respecté avec la méthode d'Euler. Nous verrons par la suite qu'il existe une méthode qui permet de respecter ce principe. <br>
 <br>
 Analysons pour le moment le cas où $\mathrm{d}t = 10^{-14}$ s qui semble montrer une trajectoire cohérente :
+
+```python
 # Paramètres de la simulation
 dt = 1e-14      # intervalle de temps (s)
 time = 10000    # nombre d'itérations
@@ -237,10 +241,11 @@ ax.set_ylabel('y (m)')
 ax.set_zlabel('z (m)')
 plt.tight_layout()
 plt.show()
+```
+
 On observe alors que la trajectoire est un cercle parfait, ce qui est cohérent avec la formule de Lorentz (1), puisque on est dans le cas où $\overrightarrow{B} ⊥ \vec{v}$, donc la force $\overrightarrow{F}$ est maximale et provoque un mouvement circulaire. <br>
 En effet dans notre cas, le produit vectoriel $\vec{v} \times \vec{B}$ donne :
-$$
-\vec{F} = q \begin{pmatrix}
+$$\vec{F} = q \begin{pmatrix}
 v_x \\
 v_y \\
 v_z
@@ -256,8 +261,7 @@ v_y B_z - v_z \cdot 0 \\
 0 \\
 -v_x B_z \\
 0
-\end{pmatrix}
-$$
+\end{pmatrix}$$
 
 La particule est alors déviée vers le négatif de l'axe y, et à tout instant la force reste perpendiculaire à la vitesse. Ce genre de force centripète fait que la particule tourne en rond. <br>
 <br>
@@ -268,11 +272,14 @@ Mais bien que la méthode d'Euler soit simple à implémenter, et fonctionne ave
 - Mauvaise stabilité numérique si le champ est fort ou si le pas de temps est trop grand
 
 <br>
+
 **Modélisation :**
 
 - Configuration de la figure :
 
 Pour modéliser en temps réel, on commence par créer une figure 3D avec des axes étiquetés, une ligne pour la traînée, et un point pour l’électron. Les limites des axes sont ajustées pour afficher clairement le cercle dans le plan \( xy \).
+
+```python
 fig = plt.figure(figsize=(8, 6))
 ax = fig.add_subplot(111, projection='3d')
 ax.set_xlabel('x (m)')
@@ -287,9 +294,13 @@ ax.legend()
 ax.set_xlim(min(positions[:, 0]), max(positions[:, 0]))
 ax.set_ylim(min(positions[:, 1]), max(positions[:, 1]))
 ax.set_zlim(-1e-6, 1e-6)  # z constant
+```
+
 - Définition des fonctions d’animation :
 
 On définit ensuite une fonction pour initialiser l’animation (vide au départ) et une autre pour mettre à jour chaque frame, en affichant une traînée de 20 points et la position actuelle de l’électron. Le sous-échantillonnage réduit la taille de l’animation.
+
+```python
 def init():
     line.set_data([], [])
     line.set_3d_properties([])
@@ -304,14 +315,20 @@ def update(frame):
     point.set_data([positions[frame*18, 0]], [positions[frame*18, 1]])
     point.set_3d_properties([positions[frame*18, 2]])
     return line, point
+```
+
 - Rendu de l’animation
 
 On génère l’animation avec 200 frames (sous-échantillonnées tous les 18 pas) et un intervalle de 10 ms pour une vidéo de 2 secondes. Le rendu HTML produit une vidéo interactive avec des contrôles play/pause.
+
+```python
 from matplotlib.animation import FuncAnimation
 from IPython.display import HTML
 
 ani = FuncAnimation(fig, update, frames=steps//18, init_func=init, interval=10, blit=True)
 HTML(ani.to_jshtml())
+```
+
 <br>
 
 ##### **III.1.2. Simulation via la méthode de Boris**
@@ -322,32 +339,25 @@ La méthode de Boris est une méthode semi-implicite conçue spécialement pour 
 <br>
 On souhaite résoudre l'équation du mouvement :
 
-$$
-\frac{d\vec{v}}{dt} = \frac{q}{m} \left( \vec{v} \times \vec{B} \right)
-$$
+$$\frac{d\vec{v}}{dt} = \frac{q}{m} \left( \vec{v} \times \vec{B} \right)$$
 
 La méthode de Boris découpe chaque itération en trois étapes :
 1. Demi-accélération par le champ électrique
-$$
-\vec{v}^- = \vec{v}_n + \frac{q\vec{E}}{2m}\Delta t
-$$
+$$\vec{v}^- = \vec{v}_n + \frac{q\vec{E}}{2m}\Delta t$$
+
 2. Rotation dans le champ magnétique
-$$
-\begin{aligned}
+$$\begin{aligned}
 &\vec{t} = \frac{q\vec{B}}{2m}\Delta t, \quad \vec{s} = \frac{2\vec{t}}{1 + \|\vec{t}\|^2} \\
 &\vec{v}' = \vec{v}^- + \vec{v}^- \times \vec{t} \\
 &\vec{v}^+ = \vec{v}^- + \vec{v}' \times \vec{s} \\
-\end{aligned}
-$$
+\end{aligned}$$
+
 3. Nouvelle demi-accélération par le champ électrique et mise à jour de la position
-$$
-\vec{v}_{n+1} = \vec{v}^+ + \frac{q\vec{E}}{2m}\Delta t
-$$
+$$\vec{v}_{n+1} = \vec{v}^+ + \frac{q\vec{E}}{2m}\Delta t$$
 
-$$
-\vec{x}_{n+1} = \vec{x}_n + \Delta t \cdot \vec{v}_{n+1}
-$$
+$$\vec{x}_{n+1} = \vec{x}_n + \Delta t \cdot \vec{v}_{n+1}$$
 
+```python
 # Méthode de Boris
 def boris(particle, E, B_func, dt, steps):
     """
@@ -430,24 +440,26 @@ ax2.set_ylabel("Énergie (J)")
 
 plt.tight_layout()
 plt.show()
+```
 
 On constate ainsi que la méthode de Boris permet davantage de souplesse quant à l'augmentation du pas de temps $\mathrm{d}t$ et au nombre d'itérations nécessaires pour couvrir 'l'entièreté' de la trajetoire. C'est une méthode stable, conservatrice d'énergie dans un champ magnétique pur, et spécifiquement adaptée aux cas des particules chargées dans un champ magnétique. <br>
 
 <br>
 <br>
+
 #### **III.2. Cas 2 : Simulation de la trajectoire d'un électron au sein d'un champ non-uniforme avec Euler vs Boris**
 
 Nous allons maintenant comparé les deux méthodes dans le cas où le champ magnétique n'est plus uniforme. <br>
 Prenons par exemple le champ :
-$$
-\vec{B}(x,y,z) = \begin{bmatrix} 
+$$\vec{B}(x,y,z) = \begin{bmatrix} 
 0.5 \ y \\ 
 -0.5 \ x \\ 
 1 + 0.1 \ z
-\end{bmatrix}
-$$
+\end{bmatrix}$$
 
 On suppose qu'il n'y a pas de champ électrique ($E=0$), et on applique les méthodes pour une même particule, même conditions initiales, afin de tracer la trajectoire de celle-ci :
+
+```python
 def champ_non_uniforme(pos):
     x, y, z = pos
     return np.array([
@@ -505,8 +517,12 @@ ax3.legend()
 
 plt.tight_layout()
 plt.show()
+```
+
 On observe bien les limites de la méthode d'Euler qui peine à obtenir la bonne trajectoire et conserver l'énergie cinétique de la particule, contrairement à la méthode de Boris qui est plus adaptée.
+
 ---
+
 ### **IV. Application à la protonthérapie**
 
 #### **IV.1. Qu'est-ce que la protonthérapie ?**
@@ -520,9 +536,7 @@ Dans le cadre de la protonthérapie, des dispositifs tels que des aimants suprac
 #### **IV.2. Implémentation de la loi de Biot et Savart**
 
 Lorsqu'un fil conducteur est traversé par un courant électrique $I$, il génère un champ magnétique $\overrightarrow{\mathrm{B}}$ conformément à la loi de Biot-Savart qui s'exprime :
-$$
-\overrightarrow{\mathrm{dB}} = \frac{\mu_0 I}{4\pi} \frac{\overrightarrow{\mathrm{d\ell}} \times \overrightarrow{PM}}{PM^3}
-$$
+$$\overrightarrow{\mathrm{dB}} = \frac{\mu_0 I}{4\pi} \frac{\overrightarrow{\mathrm{d\ell}} \times \overrightarrow{PM}}{PM^3}$$
 Où :
 - $\overrightarrow{\mathrm{dB}}$ est le champ magnétique élémentaire en un point $\vec{r}$
 - $\mu_0$ est la perméabilité du vide,
@@ -532,16 +546,12 @@ Où :
 - $|\overrightarrow{PM}|$ est la distance entre les deux points.
 
 Ainsi le champ magnétique total créé par un segment élémentaire de courant s'exprime :
-$$
-\overrightarrow{B}(M) = \int_{P \in \mathcal{C}} \overrightarrow{\mathrm{d}B}
-= \frac{\mu_0}{4\pi} \int_{P \in \mathcal{C}} \frac{I \overrightarrow{\mathrm{d}\ell} \times \overrightarrow{PM}}{\|PM\|^3}
-$$
+$$\overrightarrow{B}(M) = \int_{P \in \mathcal{C}} \overrightarrow{\mathrm{d}B}
+= \frac{\mu_0}{4\pi} \int_{P \in \mathcal{C}} \frac{I \overrightarrow{\mathrm{d}\ell} \times \overrightarrow{PM}}{\|PM\|^3}$$
 
 La bobine conductrice peut être modélisée comme une série de segments de courant. Lorsqu'un courant traverse une bobine de forme circulaire ou hélicoïdale, le champ magnétique généré peut être approximé par la somme des champs produits par chacun des segments de courant. <br>
 Une bobine circulaire avec un rayon $R$, traversée par un courant $I$, génère un champ magnétique sur son axe (l'axe z) qui est donné par l'expression suivante (voir [Annexe](#Annexe)) :
-$$
-B = \frac{\mu_0 I R²}{2(z^2 + R^2)^{3/2}}
-$$
+$$B = \frac{\mu_0 I R²}{2(z^2 + R^2)^{3/2}}$$
 Où :
 - $\mu_0 = 4\pi \times 10^{−7}$ est la perméabilité du vide,
 - $I$ est le courant dans le fil (en A),
@@ -549,6 +559,8 @@ Où :
 - $z$ est la distance axiale (en m) du centre de la bobine.
 
 Mettons maintenant cela en pratique dans notre code :
+
+```python
 def champ_bobine_biot_savart(position, I=100, R=0.01, N=100):
     """
     Calcule le champ magnétique au point `position` (np.array([x, y, z])) 
@@ -579,11 +591,13 @@ def champ_bobine_biot_savart(position, I=100, R=0.01, N=100):
         B += dB  # Somme des contributions de chaque segment
 
     return B
+```
 
 <br>
 
 #### **IV.3. Simulation de la trajectoire (avec la méthode de Boris) et ajustement**
 
+```python
 from ipywidgets import interactive, FloatSlider
 import matplotlib.image as mpimg
 
@@ -665,7 +679,9 @@ interactive_plot = interactive(
 )
 
 display(interactive_plot)
+```
 
+```python
 from ipywidgets import interactive, FloatSlider
 import matplotlib.image as mpimg
 
@@ -747,9 +763,14 @@ interactive_plot = interactive(
 )
 
 display(interactive_plot)
+```
+
 ---
+
 ### **Conclusion**
+
 ---
+
 ### **Annexes/Sources <a name="Annexe"></a>**
 
 Méthode de Boris : <br>
