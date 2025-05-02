@@ -72,35 +72,46 @@ class Particule:
 Dans cette partie nous allons voir comment déterminer, à l'aide des lois de Lorentz et Newton, les équations du mouvement d'une particule de charge $q$ soumise à un champ magnétique $\overrightarrow{B}$. <br>
 <br>
 Nous avons vu précédemment que la force appliquée à une particule au sein d'un champ magnétiuque, et en l'abscence de champ électrique, nous est donnée par la force de Lorentz (1) :
+
 $$\overrightarrow{F} = q \ \vec{v} \ ∧ \ \overrightarrow{B}$$
 
 Or on sait d'après la seconde loi de Newton que :
+
 $$\sum {\overrightarrow{F}} = m \times \vec{a} \tag{2}$$
 
 On considère que la seule force appliquée à notre particule est celle de Lorentz. En appliquant la seconde loi de Newton (2) à l'équation de Lorentz (1), on obtient :
-$$\begin{aligned}
+
+$$
+\begin{aligned}
 m \times \vec{a} &= q \ \vec{v} \ ∧ \ \overrightarrow{B} \\
 m \times \frac{\mathrm{d} \vec{v}} {\mathrm{d}t} &= q \ \vec{v} \ ∧ \ \overrightarrow{B} \\
-\end{aligned}$$
+\end{aligned}
+$$
 
 Cela donne un système d'équations différentielles pour les composantes de $\vec{v}$. <br>
 Prenons par exemple le cas d'un champ magnétique uniforme : $\overrightarrow{B} = B \vec{e}_z$ <br>
 On peut alors écrire les équations du mouvement associées. <br>
 En coordonnées cartésiennes :
-$$\begin{cases} 
+
+$$
+\begin{cases} 
 \dfrac{\mathrm{d}v_x}{\mathrm{d}t} = \dfrac{qB}{m} v_y \\
 \dfrac{\mathrm{d}v_y}{\mathrm{d}t} = -\dfrac{qB}{m} v_x \\
 \dfrac{\mathrm{d}v_z}{\mathrm{d}t} = 0
-\end{cases}$$
+\end{cases}
+$$
 
 On peut poser : $\omega_c = \dfrac{qB}{m} = \text{fréquence cyclotron}$ (désignant la pulsation qu'acquiert une charge plongée dans un champ magnétique).
 
 Résolvons les équations en intégrant. Les solutions sont alors :
-$$\begin{cases}
+
+$$
+\begin{cases}
 v_x(t) = v_0 \cos(\omega_c t) \\
 v_y(t) = v_0 \sin(\omega_c t) \\
 v_z(t) = v_{z0}
-\end{cases}$$
+\end{cases}
+$$
 
 Puis, on intègre une seconde fois pour obtenir la trajectoire :
 
