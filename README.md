@@ -31,12 +31,10 @@ Enfin, nous observerons les conséquences de la manipultion de champs magnétiqu
 ### **I. Création de l'objet Particule**
 
 Nous allons donc dans un premier temps implémenter l'objet particule, auquel on associe une position, une vitesse, une masse et une charge. On lui attribuera également une fonction permettant de calculer la force de Lorentz appliquée à cette particule à travers un champ magnétique, donnée par :
-$$
-\boxed{
+$$\boxed{
 \overrightarrow{F} = q \ \vec{v} \ ∧ \ \overrightarrow{B}
 }
-\tag{1}
-$$
+\tag{1}$$
 ```python
 import numpy as np
 
