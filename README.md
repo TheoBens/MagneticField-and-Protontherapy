@@ -37,11 +37,12 @@ $$
 }
 \tag{1}
 $$
+```python
 import numpy as np
 
 class Particule:
     def __init__(self, position, vitesse, masse, charge):
-        """python
+        """
         Initialise une particule chargée.
 
         position : np.array shape (3,) -> position initiale (x, y, z)
@@ -61,6 +62,8 @@ class Particule:
         champ_magnetique : np.array shape (3,) -> champ B au point de la particule
         """
         return self.charge * np.cross(self.vitesse, champ_magnetique)  # Produit vectoriel
+```
+
 ---
 ### **II. Déterminer la position d'une particule à un instant t à l'aide de la Force de Lorentz**
 
