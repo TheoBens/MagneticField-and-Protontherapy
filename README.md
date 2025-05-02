@@ -41,7 +41,7 @@ import numpy as np
 
 class Particule:
     def __init__(self, position, vitesse, masse, charge):
-        """
+        """python
         Initialise une particule chargée.
 
         position : np.array shape (3,) -> position initiale (x, y, z)
