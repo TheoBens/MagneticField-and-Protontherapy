@@ -81,12 +81,10 @@ $$\sum {\overrightarrow{F}} = m \times \vec{a} \tag{2}$$
 
 On considère que la seule force appliquée à notre particule est celle de Lorentz. En appliquant la seconde loi de Newton (2) à l'équation de Lorentz (1), on obtient :
 
-$$
-\begin{aligned}
+$$\begin{aligned}
 m \times \vec{a} &= q \ \vec{v} \ ∧ \ \overrightarrow{B} \\
 m \times \frac{\mathrm{d} \vec{v}} {\mathrm{d}t} &= q \ \vec{v} \ ∧ \ \overrightarrow{B} \\
-\end{aligned}
-$$
+\end{aligned}$$
 
 Cela donne un système d'équations différentielles pour les composantes de $\vec{v}$. <br>
 Prenons par exemple le cas d'un champ magnétique uniforme : $\overrightarrow{B} = B \vec{e}_z$ <br>
@@ -229,7 +227,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-On observe alors que dans les cas où $\mathrm{dt} = 10^{-12}$ s et $\mathrm{d}t = 10^{-13}$ s, l'évolution de l'énergie cinétique n'est pas linéaire, contrairement au cas où $\mathrm{dt} = 10^{-14}$ s où la courbe représentant l'évolution de l'énergie cinétique au cours du temps est une droite passant par l'origine. Dans ce cas, la trajectoire est correcte.<br>
+On observe alors que dans les cas où $\mathrm{dt} = 10^{-12}$ s et $\mathrm{dt} = 10^{-13}$ s, l'évolution de l'énergie cinétique n'est pas linéaire, contrairement au cas où $\mathrm{dt} = 10^{-14}$ s où la courbe représentant l'évolution de l'énergie cinétique au cours du temps est une droite passant par l'origine. Dans ce cas, la trajectoire est correcte.<br>
 Or, dans tous les cas, on observe une augmentation de l'énergie cinétique, le principe de conservation énergétique n'est donc pas respecté avec la méthode d'Euler. Nous verrons par la suite qu'il existe une méthode qui permet de respecter ce principe. <br>
 <br>
 Analysons pour le moment le cas où $\mathrm{dt} = 10^{-14}$ s qui semble montrer une trajectoire cohérente :
