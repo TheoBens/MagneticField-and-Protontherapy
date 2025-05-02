@@ -75,8 +75,7 @@ Nous avons vu précédemment que la force appliquée à une particule au sein d'
 $$\overrightarrow{F} = q \ \vec{v} \ ∧ \ \overrightarrow{B}$$
 
 Or on sait d'après la seconde loi de Newton que :
-$$\sum {\overrightarrow{F}} = m \times \vec{a}
-\tag{2}$$
+$$\sum {\overrightarrow{F}} = m \times \vec{a} \tag{2}$$
 
 On considère que la seule force appliquée à notre particule est celle de Lorentz. En appliquant la seconde loi de Newton (2) à l'équation de Lorentz (1), on obtient :
 $$\begin{aligned}
