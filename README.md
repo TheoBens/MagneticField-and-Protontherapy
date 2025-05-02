@@ -157,11 +157,14 @@ electron = Particule(
 
 On travaille dans un premier temps avec la méthode d'Euler pour l'évolution de la position de la particule dans le temps. Elle est connue pour sa simplicité, et consiste à approximer la solution d'une équation différentielle en utilisant la pente locale à chaque pas de temps. <br>
 Pour une particule chargée :
-$$\begin{align*}
+
+$$
+\begin{align*}
 \frac{d\vec{v}}{dt} &= \frac{q}{m}\left(\vec{E} + \vec{v} ∧ \vec{B}\right) \\
 \vec{v}_{n+1} &= \vec{v}_n + \Delta t \cdot \frac{q}{m}\left(\vec{E}_n + \vec{v}_n ∧ \vec{B}_n\right) \\
 \vec{x}_{n+1} &= \vec{x}_n + \Delta t \cdot \vec{v}_n
-\end{align*}$$
+\end{align*}
+$$
 
 <br>
 On définit alors les paramètres de la simulation, puis la fonction de simulation que l'on execute pour un temps défini, afin de déterminer la position de la particule à chaque instant à l'aide de la force de Lorentz qui lui est appliquée dans ce champ uniforme. Ce qui nous permettra de tracer par la suite, la trajectoire de la particule dans l'espace. <br>
@@ -255,7 +258,9 @@ plt.show()
 
 On observe alors que la trajectoire est un cercle parfait, ce qui est cohérent avec la formule de Lorentz (1), puisque on est dans le cas où $\overrightarrow{B} ⊥ \vec{v}$, donc la force $\overrightarrow{F}$ est maximale et provoque un mouvement circulaire. <br>
 En effet dans notre cas, le produit vectoriel $\vec{v} \times \vec{B}$ donne :
-$$\vec{F} = q \begin{pmatrix}
+
+$$
+\vec{F} = q \begin{pmatrix}
 v_x \\
 v_y \\
 v_z
@@ -271,7 +276,8 @@ v_y B_z - v_z \cdot 0 \\
 0 \\
 -v_x B_z \\
 0
-\end{pmatrix}$$
+\end{pmatrix}
+$$
 
 La particule est alors déviée vers le négatif de l'axe y, et à tout instant la force reste perpendiculaire à la vitesse. Ce genre de force centripète fait que la particule tourne en rond. <br>
 <br>
@@ -353,16 +359,21 @@ $$\frac{d\vec{v}}{dt} = \frac{q}{m} \left( \vec{v} \times \vec{B} \right)$$
 
 La méthode de Boris découpe chaque itération en trois étapes :
 1. Demi-accélération par le champ électrique
+
 $$\vec{v}^- = \vec{v}_n + \frac{q\vec{E}}{2m}\Delta t$$
 
 2. Rotation dans le champ magnétique
-$$\begin{aligned}
+
+$$
+\begin{aligned}
 &\vec{t} = \frac{q\vec{B}}{2m}\Delta t, \quad \vec{s} = \frac{2\vec{t}}{1 + \|\vec{t}\|^2} \\
 &\vec{v}' = \vec{v}^- + \vec{v}^- \times \vec{t} \\
 &\vec{v}^+ = \vec{v}^- + \vec{v}' \times \vec{s} \\
-\end{aligned}$$
+\end{aligned}
+$$
 
 3. Nouvelle demi-accélération par le champ électrique et mise à jour de la position
+
 $$\vec{v}_{n+1} = \vec{v}^+ + \frac{q\vec{E}}{2m}\Delta t$$
 
 $$\vec{x}_{n+1} = \vec{x}_n + \Delta t \cdot \vec{v}_{n+1}$$
@@ -461,11 +472,14 @@ On constate ainsi que la méthode de Boris permet davantage de souplesse quant �
 
 Nous allons maintenant comparé les deux méthodes dans le cas où le champ magnétique n'est plus uniforme. <br>
 Prenons par exemple le champ :
-$$\vec{B}(x,y,z) = \begin{bmatrix} 
+
+$$
+\vec{B}(x,y,z) = \begin{bmatrix} 
 0.5 \ y \\ 
 -0.5 \ x \\ 
 1 + 0.1 \ z
-\end{bmatrix}$$
+\end{bmatrix}
+$$
 
 On suppose qu'il n'y a pas de champ électrique ($E=0$), et on applique les méthodes pour une même particule, même conditions initiales, afin de tracer la trajectoire de celle-ci :
 
@@ -546,6 +560,7 @@ Dans le cadre de la protonthérapie, des dispositifs tels que des aimants suprac
 #### **IV.2. Implémentation de la loi de Biot et Savart**
 
 Lorsqu'un fil conducteur est traversé par un courant électrique $I$, il génère un champ magnétique $\overrightarrow{\mathrm{B}}$ conformément à la loi de Biot-Savart qui s'exprime :
+
 $$\overrightarrow{\mathrm{dB}} = \frac{\mu_0 I}{4\pi} \frac{\overrightarrow{\mathrm{d\ell}} \times \overrightarrow{PM}}{PM^3}$$
 Où :
 - $\overrightarrow{\mathrm{dB}}$ est le champ magnétique élémentaire en un point $\vec{r}$
@@ -556,11 +571,15 @@ Où :
 - $|\overrightarrow{PM}|$ est la distance entre les deux points.
 
 Ainsi le champ magnétique total créé par un segment élémentaire de courant s'exprime :
-$$\overrightarrow{B}(M) = \int_{P \in \mathcal{C}} \overrightarrow{\mathrm{d}B}
-= \frac{\mu_0}{4\pi} \int_{P \in \mathcal{C}} \frac{I \overrightarrow{\mathrm{d}\ell} \times \overrightarrow{PM}}{\|PM\|^3}$$
+
+$$
+\overrightarrow{B}(M) = \int_{P \in \mathcal{C}} \overrightarrow{\mathrm{d}B}
+= \frac{\mu_0}{4\pi} \int_{P \in \mathcal{C}} \frac{I \overrightarrow{\mathrm{d}\ell} \times \overrightarrow{PM}}{\|PM\|^3}
+$$
 
 La bobine conductrice peut être modélisée comme une série de segments de courant. Lorsqu'un courant traverse une bobine de forme circulaire ou hélicoïdale, le champ magnétique généré peut être approximé par la somme des champs produits par chacun des segments de courant. <br>
 Une bobine circulaire avec un rayon $R$, traversée par un courant $I$, génère un champ magnétique sur son axe (l'axe z) qui est donné par l'expression suivante (voir [Annexe](#Annexe)) :
+
 $$B = \frac{\mu_0 I R²}{2(z^2 + R^2)^{3/2}}$$
 Où :
 - $\mu_0 = 4\pi \times 10^{−7}$ est la perméabilité du vide,
