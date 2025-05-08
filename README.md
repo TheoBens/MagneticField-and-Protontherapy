@@ -23,11 +23,11 @@ Enfin, nous observerons les conséquences de la manipultion de champs magnétiqu
 
 ## **Problématique**
 
-1. ***Comment un champ magnétique affecte-t-il la trajectoire d’une particule chargée en mouvement ?***
+***Comment un champ magnétique affecte-t-il la trajectoire d’une particule chargée en mouvement ?***
 
-2. ***Comment simuler le mouvement d’une particule chargée soumise à un champ magnétique statique, et observer l’influence du champ sur sa trajectoire dans différents cas ?***
+- ***Comment simuler le mouvement d’une particule chargée soumise à un champ magnétique statique, et observer l’influence du champ sur sa trajectoire dans différents cas ?***
 
-3. ***Comment l'influence d'un champ magnétique peut-il aider dans la protonthérapie ?***
+- ***Comment l'influence d'un champ magnétique peut-il aider dans la protonthérapie ?***
 
 ---
 
