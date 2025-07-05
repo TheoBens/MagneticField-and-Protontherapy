@@ -156,13 +156,11 @@ electron = Particule(
 On travaille dans un premier temps avec la méthode d'Euler pour l'évolution de la position de la particule dans le temps. Elle est connue pour sa simplicité, et consiste à approximer la solution d'une équation différentielle en utilisant la pente locale à chaque pas de temps. <br>
 Pour une particule chargée :
 
-$$
-\begin{align*}
+$$\begin{align*}
 \frac{d\vec{v}}{dt} &= \frac{q}{m}\left(\vec{E} + \vec{v} ∧ \vec{B}\right) \\
 \vec{v}_{n+1} &= \vec{v}_n + \Delta t \cdot \frac{q}{m}\left(\vec{E}_n + \vec{v}_n ∧ \vec{B}_n\right) \\
 \vec{x}_{n+1} &= \vec{x}_n + \Delta t \cdot \vec{v}_n
-\end{align*}
-$$
+\end{align*}$$
 
 <br>
 On définit alors les paramètres de la simulation, puis la fonction de simulation que l'on execute pour un temps défini, afin de déterminer la position de la particule à chaque instant à l'aide de la force de Lorentz qui lui est appliquée dans ce champ uniforme. Ce qui nous permettra de tracer par la suite, la trajectoire de la particule dans l'espace. <br>
