@@ -805,18 +805,72 @@ display(interactive_plot)
 ---
 
 ### **Conclusion**
+Ce projet nous a permis de visualiser l’influence d’un champ magnétique sur la trajectoire d’une particule chargée, en particulier à travers la simulation du mouvement d’un proton.
+
+En combinant modélisation physique, calculs analytiques et méthodes numériques, nous avons visualisé comment la force de Lorentz agit pour dévier une particule, avec des trajectoires circulaires caractéristiques en champ uniforme, et des courbes plus complexes dans le cas d’un champ généré par une bobine (modélisé par la loi de Biot-Savart), comme le montrent nos animations 3D.
+
+L’algorithme de Boris s’est révélé plus précis que la méthode d’Euler, qui tend à perdre de l’énergie. En effet la méthode de Boris a montré son efficacité pour préserver l’énergie cinétique en absence de champ électrique et pour simuler des trajectoires réalistes, y compris dans des champs non uniformes.
+
+L’ajout progressif de complexité, jusqu’à modéliser une bobine réelle par la loi de Biot et Savart, a mis en évidence l’intérêt d’une telle approche pour comprendre des situations proches d’applications concrètes comme la protonthérapie. <br>
+Pour celle-ci, notre simulation interactive montre comment ajuster le courant et le rayon d’une bobine afin de  diriger un proton vers une cible spécifique, un principe clé pour traiter les tumeurs avec précision.
+
+Malgré ces réussites, nos modèles restent simplifiés. Euler manque de fiabilité, et les champs magnétiques modélisés ne reflètent pas toute la complexité des accélérateurs réels. <br>
+À l’avenir, on pourrait étendre la simulation à des champs électriques ou à plusieurs particules en interaction, simuler des interactions avec les tissus pour mieux représenter la protonthérapie et intégrer cette modélisation dans un environnement plus proche des dispositifs médicaux ou expérimentaux réels.
 
 ---
 
 ### **Annexes/Sources <a name="Annexe"></a>**
+
+Animation d'une particule : <br>
+- https://towardsdatascience.com/simple-physics-animations-using-vpython-1fce0284606/
+
+Programme pour équations différentielles : <br>
+- https://compphysics.github.io/ComputationalPhysics/doc/pub/ode/html/ode.html
+
+Animation 3D Matplotlib : <br>
+- https://matplotlib.org/2.1.2/gallery/animation/simple_3danim.html
 
 Méthode de Boris : <br>
 - https://www.particleincell.com/2011/vxb-rotation/
 
 Champ magnétique dû à une bobine circulaire: <br>
 - https://physics.nyu.edu/~physlab/GenPhysI_PhysII/Intro_experimental_physicsII_write_ups/Magnetic-field-circular-coil_01_30_2017.pdf *Partie 4. équation (1)* <br>
-
 - https://www.doubtnut.com/qna/642522489 <br>
+
+Biot-Savard sur Python : <br>
+- https://github.com/segmentation-fault/BiotSavartSolver
 
 Vitesse d'un proton dans un accélérateur :
 - https://www.psi.ch/fr/research/laccelerateur-de-protons-du-psi
+
+Simulations Python pour l'électromagnétisme : <br>
+- https://github.com/MatthewFilipovich/pycharge
+
+### **Annexes/Sources <a name="Annexe"></a>**
+
+Animation d'une particule : <br>
+- https://towardsdatascience.com/simple-physics-animations-using-vpython-1fce0284606/
+
+Programme pour équations différentielles : <br>
+- https://compphysics.github.io/ComputationalPhysics/doc/pub/ode/html/ode.html
+
+Animation 3D Matplotlib : <br>
+- https://matplotlib.org/2.1.2/gallery/animation/simple_3danim.html
+
+Méthode de Boris : <br>
+- https://www.particleincell.com/2011/vxb-rotation/
+
+Champ magnétique dû à une bobine circulaire: <br>
+- https://physics.nyu.edu/~physlab/GenPhysI_PhysII/Intro_experimental_physicsII_write_ups/Magnetic-field-circular-coil_01_30_2017.pdf *Partie 4. équation (1)* <br>
+- https://www.doubtnut.com/qna/642522489 <br>
+
+Biot-Savard sur Python : <br>
+- https://github.com/segmentation-fault/BiotSavartSolver
+
+Vitesse d'un proton dans un accélérateur :
+- https://www.psi.ch/fr/research/laccelerateur-de-protons-du-psi
+
+Simulations Python pour l'électromagnétisme : <br>
+- https://github.com/MatthewFilipovich/pycharge
+
+Grok & ChatGPT
