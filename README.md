@@ -718,6 +718,8 @@ interactive_plot = interactive(
 display(interactive_plot)
 ```
 
+![image](https://github.com/user-attachments/assets/059a0d2d-49d2-4670-928e-f39e379837b5)
+
 ```python
 from ipywidgets import interactive, FloatSlider
 import matplotlib.image as mpimg
@@ -801,6 +803,8 @@ interactive_plot = interactive(
 
 display(interactive_plot)
 ```
+
+![image](https://github.com/user-attachments/assets/713b0966-6506-4c82-a8b1-5665c3c971b4)
 
 ---
 
