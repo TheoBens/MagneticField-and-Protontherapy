@@ -158,11 +158,9 @@ electron = Particule(
 On travaille dans un premier temps avec la méthode d'Euler pour l'évolution de la position de la particule dans le temps. Elle est connue pour sa simplicité, et consiste à approximer la solution d'une équation différentielle en utilisant la pente locale à chaque pas de temps. <br>
 Pour une particule chargée :
 
-$$\begin{aligned}
-\frac{d\vec{v}}{dt} &= \frac{q}{m}\left(\vec{E} + \vec{v} ∧ \vec{B}\right) \\
+$$\begin{aligned} \frac{d\vec{v}}{dt} &= \frac{q}{m}\left(\vec{E} + \vec{v} ∧ \vec{B}\right) \\
 \vec{v}_{n+1} &= \vec{v}_n + \Delta t \cdot \frac{q}{m}\left(\vec{E}_n + \vec{v}_n ∧ \vec{B}_n\right) \\
-\vec{x}_{n+1} &= \vec{x}_n + \Delta t \cdot \vec{v}_n
-\end{aligned}$$
+\vec{x}_{n+1} &= \vec{x}_n + \Delta t \cdot \vec{v}_n \end{aligned}$$
 
 <br>
 On définit alors les paramètres de la simulation, puis la fonction de simulation que l'on execute pour un temps défini, afin de déterminer la position de la particule à chaque instant à l'aide de la force de Lorentz qui lui est appliquée dans ce champ uniforme. Ce qui nous permettra de tracer par la suite, la trajectoire de la particule dans l'espace. <br>
@@ -227,6 +225,8 @@ plt.tight_layout()
 plt.show()
 ```
 
+![image](https://github.com/user-attachments/assets/bf13d940-10df-4dc7-adf6-acfbc632dc43)
+
 On observe alors que dans les cas où $\mathrm{dt} = 10^{-12}$ s et $\mathrm{dt} = 10^{-13}$ s, l'évolution de l'énergie cinétique n'est pas linéaire, contrairement au cas où $\mathrm{dt} = 10^{-14}$ s où la courbe représentant l'évolution de l'énergie cinétique au cours du temps est une droite passant par l'origine. Dans ce cas, la trajectoire est correcte.<br>
 Or, dans tous les cas, on observe une augmentation de l'énergie cinétique, le principe de conservation énergétique n'est donc pas respecté avec la méthode d'Euler. Nous verrons par la suite qu'il existe une méthode qui permet de respecter ce principe. <br>
 <br>
@@ -253,6 +253,8 @@ ax.set_zlabel('z (m)')
 plt.tight_layout()
 plt.show()
 ```
+
+![image](https://github.com/user-attachments/assets/92869a10-5e96-451c-8415-cdbecc9a8b16)
 
 On observe alors que la trajectoire est un cercle parfait, ce qui est cohérent avec la formule de Lorentz (1), puisque on est dans le cas où $\overrightarrow{B} ⊥ \vec{v}$, donc la force $\overrightarrow{F}$ est maximale et provoque un mouvement circulaire. <br>
 En effet dans notre cas, le produit vectoriel $\vec{v} \times \vec{B}$ donne :
@@ -310,6 +312,8 @@ ax.set_ylim(min(positions[:, 1]), max(positions[:, 1]))
 ax.set_zlim(-1e-6, 1e-6)  # z constant
 ```
 
+![image](https://github.com/user-attachments/assets/892225dd-1ee5-477b-9832-e13eb601e180)
+
 - Définition des fonctions d’animation :
 
 On définit ensuite une fonction pour initialiser l’animation (vide au départ) et une autre pour mettre à jour chaque frame, en affichant une traînée de 20 points et la position actuelle de l’électron. Le sous-échantillonnage réduit la taille de l’animation.
@@ -342,6 +346,8 @@ from IPython.display import HTML
 ani = FuncAnimation(fig, update, frames=steps//18, init_func=init, interval=10, blit=True)
 HTML(ani.to_jshtml())
 ```
+
+![proton_traj](https://github.com/user-attachments/assets/56b46662-dad6-4e57-a738-4f4ebc17647d)
 
 <br>
 
@@ -461,6 +467,8 @@ plt.tight_layout()
 plt.show()
 ```
 
+![image](https://github.com/user-attachments/assets/e4542988-10ae-48d6-b67b-82ea4fda0027)
+
 On constate ainsi que la méthode de Boris permet davantage de souplesse quant à l'augmentation du pas de temps $\mathrm{d}t$ et au nombre d'itérations nécessaires pour couvrir 'l'entièreté' de la trajetoire. C'est une méthode stable, conservatrice d'énergie dans un champ magnétique pur, et spécifiquement adaptée aux cas des particules chargées dans un champ magnétique. <br>
 
 <br>
@@ -540,6 +548,8 @@ ax3.legend()
 plt.tight_layout()
 plt.show()
 ```
+
+![image](https://github.com/user-attachments/assets/af172cbe-f3d6-4cc1-8892-69b4cd9b3369)
 
 On observe bien les limites de la méthode d'Euler qui peine à obtenir la bonne trajectoire et conserver l'énergie cinétique de la particule, contrairement à la méthode de Boris qui est plus adaptée.
 
