@@ -876,5 +876,3 @@ Vitesse d'un proton dans un accélérateur :
 
 Simulations Python pour l'électromagnétisme : <br>
 - https://github.com/MatthewFilipovich/pycharge
-
-Grok & ChatGPT
